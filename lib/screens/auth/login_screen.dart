@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:zen/widgets/custom_elevated_button.dart';
 import 'package:zen/widgets/gap.dart';
 
@@ -36,32 +37,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   label: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(
-                        Icons.email,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                      SvgPicture.asset('assets/svg/email.svg',color: Theme.of(context).primaryColor,),
                       const Text(' Email')
                     ],
                   ),
                   hintText: 'example@gmail.com',
                   hintStyle: const TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).primaryColor,
-                      width: 2.0,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                      width: 1.0,
-                    ),
-                  ),
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
