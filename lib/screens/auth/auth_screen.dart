@@ -17,7 +17,7 @@ class AuthScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(child: SvgPicture.asset('assets/svg/auth.svg')),
-            const HGap(),
+            hGap(),
             Text(
               'Zen',
               style: TextStyle(
@@ -26,14 +26,14 @@ class AuthScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const HGap(),
+            hGap(),
             Text(
               'Stay Productive',
               style: TextStyle(
                   color: Theme.of(context).primaryColor, fontSize: 16),
             ),
-            const HGap(
-              height: 40,
+            hGap(
+              h:40
             ),
             CustomElevatedButton(
               label: 'Login',
@@ -41,14 +41,14 @@ class AuthScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/login');
               },
             ),
-            const HGap(),
+            hGap(),
             CustomTextButton(
               label: 'Sign Up',
               onPresed: () {
                 Navigator.pushNamed(context, '/signup');
               },
             ),
-            const HGap(),
+            hGap(),
           ],
         ),
       ),

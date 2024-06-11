@@ -11,8 +11,8 @@ class CustomElevatedButton extends StatelessWidget {
       onPressed: onPressd,
       style: ElevatedButton.styleFrom(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          minimumSize: Size(MediaQuery.of(context).size.width, 50),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          minimumSize: Size(MediaQuery.of(context).size.width, 52),
           foregroundColor: Colors.white,
           backgroundColor: Theme.of(context).primaryColor),
       child: Text(

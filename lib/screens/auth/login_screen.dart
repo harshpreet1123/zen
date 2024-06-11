@@ -11,6 +11,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,10 +19,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HGap(
-                height: 40,
-              ),
+              hGap(h: 40),
               Text(
                 'Login',
                 style: TextStyle(
@@ -29,24 +29,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.w700),
               ),
-              const HGap(
-                height: 20,
-              ),
+              hGap(),
               TextFormField(
                 decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
                   label: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SvgPicture.asset('assets/svg/email.svg',color: Theme.of(context).primaryColor,),
+                      SvgPicture.asset(
+                        'assets/svg/email.svg',
+                        color: Theme.of(context).primaryColor,
+                      ),
                       const Text(' Email')
                     ],
                   ),
                   hintText: 'example@gmail.com',
                   hintStyle: const TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
@@ -59,44 +57,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              const HGap(
-                height: 20,
-              ),
+              hGap(),
               TextFormField(
                 decoration: InputDecoration(
-                  // labelText: 'Password',
+                  suffix: InkWell(
+                      onTap: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      },
+                      child: Icon(
+                          isObscure ? Icons.visibility : Icons.visibility_off)),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
                   hintText: '●●●●●●●●●',
                   hintStyle: const TextStyle(color: Colors.grey),
-                  // prefixIcon: const Icon(Icons.lock),
                   label: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(
-                        Icons.lock,
+                      SvgPicture.asset(
+                        'assets/svg/lock.svg',
                         color: Theme.of(context).primaryColor,
                       ),
                       const Text(' Password')
                     ],
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).primaryColor,
-                      width: 2.0,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                      width: 1.0,
-                    ),
-                  ),
                 ),
-                obscureText: true,
+                obscureText: isObscure,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your password';
@@ -107,13 +93,77 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              const HGap(
-                height: 20,
+              hGap(),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
               ),
+              hGap(h: 50),
               CustomElevatedButton(
                 label: 'Login',
                 onPressd: () {},
               ),
+              hGap(h: 50),
+              const Row(
+                children: [
+                  Flexible(
+                    child: Divider(
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                  ),
+                  Text('or with'),
+                  Flexible(
+                    child: Divider(
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                  )
+                ],
+              ),
+              hGap(),
+              Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                  onTap: () {},
+                  child: SvgPicture.asset('assets/svg/google.svg'),
+                ),
+              ),
+              hGap(),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Don\'t have an account? ',
+                    style: TextStyle(
+                        fontSize: 16, color: Theme.of(context).primaryColor),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                    child: Text('Sign Up',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w700)),
+                  )
+                ],
+              ),
+              hGap(h: 10),
             ],
           ),
         ),
