@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:zen/services/auth_services.dart';
 import 'package:zen/styles/colors.dart';
 import 'package:zen/widgets/gap.dart';
 
@@ -11,6 +11,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +24,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         actions: [
           IconButton(
-              onPressed: () {
+              onPressed: () async {
+                await _authService.signOut();
+                print("Logout");
                 Navigator.pushNamedAndRemoveUntil(
                     context, '/', (route) => false);
               },
