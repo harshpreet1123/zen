@@ -63,7 +63,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 hGap(h: 50),
                 CustomElevatedButton(
                   label: 'Login',
-                  onPressd: () {},
+                  onPressd: () {
+                    
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/bottom-nav', (route) => false);
+                  },
                 ),
                 hGap(h: 50),
                 const Row(
@@ -91,8 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: SvgPicture.asset('assets/svg/google.svg'),
                   ),
                 ),
-                hGap(h:50),
-                
+                hGap(h: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -103,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, '/signup');
+                        Navigator.pushReplacementNamed(context, '/signup');
                       },
                       child: Text('Sign Up',
                           style: TextStyle(

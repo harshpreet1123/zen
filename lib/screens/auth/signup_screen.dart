@@ -22,87 +22,89 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              hGap(h:40),
+              hGap(h: 40),
               Text(
-                  'Sign up',
-                  style: TextStyle(
-                      fontSize: 36,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w700),
-                ),
-                hGap(),
-                const CustomTextFormField(
-                    label: 'Email',
-                    iconPath: 'assets/svg/email.svg',
-                    hintText: 'example@gmail.com'),
-                hGap(),
-                const CustomTextFormField(
-                  label: 'Password',
-                  iconPath: 'assets/svg/lock.svg',
-                  hintText: '●●●●●●●●●',
-                  isPasswordField: true,
-                ),
-                hGap(),
-                const CustomTextFormField(
-                  label: 'Confirm Password',
-                  iconPath: 'assets/svg/lock.svg',
-                  hintText: '●●●●●●●●●',
-                  isPasswordField: true,
-                ),
-                hGap(h: 50),
-                CustomElevatedButton(
-                  label: 'Create',
-                  onPressd: () {},
-                ),
-                hGap(h: 50),
-                const Row(
-                  children: [
-                    Flexible(
-                      child: Divider(
-                        indent: 20,
-                        endIndent: 20,
-                      ),
+                'Sign up',
+                style: TextStyle(
+                    fontSize: 36,
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w700),
+              ),
+              hGap(),
+              const CustomTextFormField(
+                  label: 'Email',
+                  iconPath: 'assets/svg/email.svg',
+                  hintText: 'example@gmail.com'),
+              hGap(),
+              const CustomTextFormField(
+                label: 'Password',
+                iconPath: 'assets/svg/lock.svg',
+                hintText: '●●●●●●●●●',
+                isPasswordField: true,
+              ),
+              hGap(),
+              const CustomTextFormField(
+                label: 'Confirm Password',
+                iconPath: 'assets/svg/lock.svg',
+                hintText: '●●●●●●●●●',
+                isPasswordField: true,
+              ),
+              hGap(h: 50),
+              CustomElevatedButton(
+                label: 'Create',
+                onPressd: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/bottom-nav', (route) => false);
+                },
+              ),
+              hGap(h: 50),
+              const Row(
+                children: [
+                  Flexible(
+                    child: Divider(
+                      indent: 20,
+                      endIndent: 20,
                     ),
-                    Text('or with'),
-                    Flexible(
-                      child: Divider(
-                        indent: 20,
-                        endIndent: 20,
-                      ),
-                    )
-                  ],
-                ),
-                hGap(),
-                Align(
-                  alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: () {},
-                    child: SvgPicture.asset('assets/svg/google.svg'),
                   ),
-                ),
-                hGap(h:50),
-                
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Have an account? ',
-                      style: TextStyle(
-                          fontSize: 16, color: Theme.of(context).primaryColor),
+                  Text('or with'),
+                  Flexible(
+                    child: Divider(
+                      indent: 20,
+                      endIndent: 20,
                     ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/login');
-                      },
-                      child: Text('Log in',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.w700)),
-                    )
-                  ],
+                  )
+                ],
+              ),
+              hGap(),
+              Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                  onTap: () {},
+                  child: SvgPicture.asset('assets/svg/google.svg'),
                 ),
-                hGap(h: 10),
+              ),
+              hGap(h: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Have an account? ',
+                    style: TextStyle(
+                        fontSize: 16, color: Theme.of(context).primaryColor),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, '/login');
+                    },
+                    child: Text('Log in',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w700)),
+                  )
+                ],
+              ),
+              hGap(h: 10),
             ],
           ),
         ),
