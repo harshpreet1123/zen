@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:zen/services/auth_services.dart';
+import 'package:zen/styles/colors.dart';
 import 'package:zen/widgets/custom_elevated_button.dart';
 import 'package:zen/widgets/custom_text_from_filed.dart';
 import 'package:zen/widgets/gap.dart';
@@ -12,7 +15,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
+  bool isLoading = false;
   bool isObscure = true;
+  void _login() async {
+    setState(() {
+      isLoading = true;
+    });
+    User? result = await _authService.loginWithEmailPassword(
+        _emailController.text, _passwordController.text);
+    setState(() {
+      isLoading = false;
+    });
+    print(result.toString());
+    if (result != null) {
+      Navigator.pushReplacementNamed(context, '/bottom-nav');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,16 +54,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.w700),
                 ),
                 hGap(),
-                const CustomTextFormField(
-                    label: 'Email',
-                    iconPath: 'assets/svg/email.svg',
-                    hintText: 'example@gmail.com'),
+                CustomTextFormField(
+                  label: 'Email',
+                  iconPath: 'assets/svg/email.svg',
+                  hintText: 'example@gmail.com',
+                  controller: _emailController,
+                ),
                 hGap(),
-                const CustomTextFormField(
+                CustomTextFormField(
                   label: 'Password',
                   iconPath: 'assets/svg/lock.svg',
                   hintText: '●●●●●●●●●',
                   isPasswordField: true,
+                  controller: _passwordController,
                 ),
                 hGap(),
                 SizedBox(
@@ -61,10 +86,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 hGap(h: 50),
-                CustomElevatedButton(
-                  label: 'Login',
-                  onPressd: () {},
-                ),
+                isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: Kolors.primaryColor,
+                        ),
+                      )
+                    : CustomElevatedButton(
+                        label: 'Login',
+                        onPressd: _login,
+                      ),
                 hGap(h: 50),
                 const Row(
                   children: [
@@ -91,8 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: SvgPicture.asset('assets/svg/google.svg'),
                   ),
                 ),
-                hGap(h:50),
-                
+                hGap(h: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -103,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, '/signup');
+                        Navigator.pushReplacementNamed(context, '/signup');
                       },
                       child: Text('Sign Up',
                           style: TextStyle(

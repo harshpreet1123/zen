@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "92194847659",
+    "project_id": "hormony-52bba",
+    "storage_bucket": "hormony-52bba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92194847659:android:7b157a4da109f95906b0ee",
+        "android_client_info": {
+          "package_name": "com.enco.zen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB12tLZ5n473FtsAisql162l-8SHWa9hkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

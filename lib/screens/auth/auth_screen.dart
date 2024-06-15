@@ -19,18 +19,18 @@ class AuthScreen extends StatelessWidget {
             Center(child: SvgPicture.asset('assets/svg/auth.svg')),
             hGap(),
             Text(
-              'Zen',
+              'Hormony',
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
+                fontSize: 36,
+                fontWeight: FontWeight.w800,
               ),
             ),
             hGap(),
             Text(
               'Stay Productive',
               style: TextStyle(
-                  color: Theme.of(context).primaryColor, fontSize: 16),
+                  color: Theme.of(context).primaryColor, fontSize: 20),
             ),
             hGap(
               h:40

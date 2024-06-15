@@ -7,6 +7,7 @@ class CustomTextFormField extends StatefulWidget {
   final String hintText;
   final TextInputType keyboardType;
   final bool isPasswordField;
+  final TextEditingController? controller;
 
   const CustomTextFormField({
     super.key,
@@ -14,7 +15,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.iconPath,
     required this.hintText,
     this.keyboardType = TextInputType.text,
-    this.isPasswordField = false,
+    this.isPasswordField = false, this.controller,
   });
 
   @override
@@ -27,6 +28,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 0),
         hintText: widget.hintText,
